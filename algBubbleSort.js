@@ -11,9 +11,9 @@ class BubbleSort extends SortingAnimation {
                 let value2 = this.columns[i].value;
                 this.columns[i - 1].color = comparedColor;
                 this.columns[i].color = comparedColor;
-                await this.wait(waitingTime);
+                await this.wait(this.waitingTime);
                 if (value1 > value2) {
-                    await this.wait(waitingTime);
+                    await this.wait(this.waitingTime);
                     this.columns[i - 1].value = value2;
                     this.columns[i].value = value1;
                     swap = true;

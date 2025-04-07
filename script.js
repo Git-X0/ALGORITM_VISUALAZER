@@ -104,6 +104,13 @@ function setFirstSort(value) {
                 waitingTime
             );
             break;
+        case "shellSort":
+            firstSortAnimation = new ShellSort(
+                firstSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
     }
 }
 setFirstSort("bubbleSort");
@@ -132,6 +139,13 @@ function setSecondSort(value) {
                 waitingTime
             );
             break;
+        case "shellSort":
+            secondSortAnimation = new ShellSort(
+                secondSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
     }
 }
 setSecondSort("bubbleSort");
@@ -145,12 +159,13 @@ function displayTime(sort, count, time) {
     console.log(`\n`);
 }
 
-function changeTime(value) {
-    bubbleSortAnimation.waitingTime = value;
-    selectionSortAnimation.waitingTime = value;
-    insertionSortAnimation.waitingTime = value;
-    firstSortAnimation.waitingTime = value;
-    secondSortAnimation.waitingTime = value;
+function changeTime(newTime) {
+    bubbleSortAnimation.waitingTime = newTime;
+    selectionSortAnimation.waitingTime = newTime;
+    insertionSortAnimation.waitingTime = newTime;
+    shellSortAnimation.waitingTime = newTime;
+    firstSortAnimation.waitingTime = newTime;
+    secondSortAnimation.waitingTime = newTime;
 }
 //-----------------------------------------------------------------EVENT LISTENERS---------------------------------------------------------------
 let isbubbleBusy = false;
@@ -234,6 +249,33 @@ insertionSortSizeInput.addEventListener("input", async () => {
             insertionSortSizeInput.value
         );
         isInsertionBusy = false;
+    }
+});
+
+let isShellBusy = false;
+shellSortButton.addEventListener("click", async () => {
+    if (!isShellBusy) {
+        isShellBusy = true;
+        count = shellSortSizeInput.value;
+        let shellCount = shellSortSizeInput.value;
+        let shellTime = performance.now();
+        await shellSortAnimation.sort();
+        displayTime("shell sort", shellCount, shellTime);
+        isShellBusy = false;
+    }
+});
+shuffleButtonShell.addEventListener("click", async () => {
+    if (!isShellBusy) {
+        isShellBusy = true;
+        await shellSortAnimation.shuffle();
+        isShellBusy = false;
+    }
+});
+shellSortSizeInput.addEventListener("input", async () => {
+    if (!isShellBusy) {
+        isShellBusy = true;
+        shellSortAnimation.changeSizeAndValues(shellSortSizeInput.value);
+        isShellBusy = false;
     }
 });
 

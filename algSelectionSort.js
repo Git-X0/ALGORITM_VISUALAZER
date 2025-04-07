@@ -7,7 +7,7 @@ class SelectionSort extends SortingAnimation {
             let minIndex = i;
             for (let j = i + 1; j < this.columns.length; j++) {
                 this.columns[j].color = comparedColor;
-                await this.wait(waitingTime);
+                await this.wait(this.waitingTime);
                 if (this.columns[j].value < this.columns[minIndex].value) {
                     if (minIndex !== i) {
                         this.columns[minIndex].color = unsortedColor;
@@ -17,7 +17,7 @@ class SelectionSort extends SortingAnimation {
                     this.columns[j].color = unsortedColor;
                 }
             }
-            await this.wait(waitingTime);
+            await this.wait(this.waitingTime);
             if (minIndex !== i) {
                 [this.columns[i].value, this.columns[minIndex].value] = [
                     this.columns[minIndex].value,
