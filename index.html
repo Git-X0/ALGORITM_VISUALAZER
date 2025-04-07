@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SORTING VISUALIZER</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="classColumn.js"></script>
+        <script src="classSortingAnimation.js"></script>
+        <script src="algBubbleSort.js"></script>
+        <script src="algSelectionSort.js"></script>
+        <script src="algInsertionSort.js"></script>
+        <script src="algShellSort.js"></script>
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+        <form>
+            <p for="speedSlider">Speed of sorting</p>
+            <input
+                type="number"
+                min="1"
+                max="200"
+                value="20"
+                class="controls"
+                id="speedSlider"
+                onchange="changeTime(parseInt(this.value))"
+            />
+        </form>
+        <h1>QUADRATIC SORTING</h1>
+        <h3>BUBBLE SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="bubbleSort_Container"></div>
+            <div class="sort_inputs">
+                <button class="controls" id="bubbleSortBTN">Bubble</button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="bubblesortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_bubble"
+                >
+                    Shuffle
+                </button>
+            </div>
+        </div>
+        <h3>SELECTION SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="selectionSort_Container"></div>
+            <div class="sort_inputs">
+                <button class="controls" id="selectionSortBTN">
+                    Selection
+                </button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="selectionsortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_selection"
+                >
+                    Shuffle
+                </button>
+            </div>
+        </div>
+        <h3>INSERTION SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="insertionSort_Container"></div>
+            <div class="sort_inputs">
+                <button class="controls" id="insertionSortBTN">
+                    Insertion
+                </button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="insertionsortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button class="controls" id="shuffleBTN_insertion">
+                    Shuffle
+                </button>
+            </div>
+        </div>
+        <h1>N-LOGARITMIC SORTING</h1>
+        <h3>SHELL SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="shellSort_Container"></div>
+            <div class="sort_inputs">
+                <button class="controls" id="shellSortBTN">Shell</button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="shellsortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_shell"
+                >
+                    Shuffle
+                </button>
+            </div>
+        </div>
+        <h2>COMPARASON OF TWO ALGORITMS</h3>
+        <div class="comparison_containers">
+            <div class="comparison_container">
+                <select
+                    name="algorithms"
+                    class="controls"
+                    id="firstSortContainerSelection"
+                    onchange="setFirstSort(this.value)"
+                >
+                    <option value="bubbleSort">Bubble Sort</option>
+                    <option value="selectionSort">Selection Sort</option>
+                    <option value="insertionSort">Insertion Sort</option>
+                </select>
+                <div class="sort_container" id="firstSortContainer"></div>
+            </div>
+            <div class="comparison_container">
+                <select
+                    name="algorithms"
+                    class="controls"
+                    id="secondSortContainerSelection"
+                    onchange="setSecondSort(this.value)"
+                >
+                    <option value="bubbleSort">Bubble Sort</option>
+                    <option value="selectionSort">Selection Sort</option>
+                    <option value="insertionSort">Insertion Sort</option>
+                </select>
+                <div class="sort_container" id="secondSortContainer"></div>
+            </div>
+        </div>
+        <button class="controls" id="comparisonSortBTN">Comparison</button>
+        <input
+            type="number"
+            class="controls"
+            id="comparisonsortIN"
+            min="3"
+            value="100"
+        />
+        <button class="controls" class="shuffleBTN" id="shuffleBTN_comparison">
+            Shuffle
+        </button>
+    </body>
+</html>

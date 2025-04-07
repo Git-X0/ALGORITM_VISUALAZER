@@ -1,0 +1,61 @@
+:root {
+    text-align: center;
+    font-size: 2rem;
+}
+
+h1 {
+    color: red;
+    text-align: left;
+}
+
+.sortingSection {
+    margin-bottom: 2%;
+}
+.sort_container {
+    --column-count: 20;
+    --max-value: 20;
+    width: 70%;
+    aspect-ratio: 16/9;
+    background-color: rgb(54, 54, 54);
+    margin: auto;
+    margin-top: 0;
+    position: relative;
+}
+.sort_container div {
+    --value: 10;
+    --index: 0;
+    position: absolute;
+    width: calc(100% / var(--column-count));
+    height: calc(100% / var(--max-value) * var(--value));
+    background-color: whitesmoke;
+    bottom: 0;
+    left: calc(100% / var(--column-count) * var(--index));
+    box-shadow: inset 0 0 0px 0.25px;
+}
+
+.comparison_containers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.comparison_container {
+    display: inline-block;
+    width: 50%;
+}
+
+.controls {
+    position: relative;
+    width: fit-content;
+    font-weight: bolder;
+    aspect-ratio: 16/3;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-size-adjust: 100%;
+}
+.controls:hover {
+    background-color: rgb(80, 80, 80);
+}
