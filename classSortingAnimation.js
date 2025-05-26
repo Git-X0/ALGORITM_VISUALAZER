@@ -27,6 +27,9 @@ class SortingAnimation {
             this.columns[i].color = "";
         }
     };
+    cloneValues() {
+        return this.#values.map((value) => value);
+    }
     async shuffle() {
         for (let i = this.columns.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));

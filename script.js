@@ -9,6 +9,8 @@ const insertionSortContainer = document.getElementById(
     "insertionSort_Container"
 );
 const shellSortContainer = document.getElementById("shellSort_Container");
+const quickSortContainer = document.getElementById("quickSort_Container");
+const mergeSortContainer = document.getElementById("mergeSort_Container");
 const firstSortContainer = document.getElementById("firstSortContainer");
 const secondSortContainer = document.getElementById("secondSortContainer");
 //-----------------------------------------------------------------START BUTTONS---------------------------------------------------------------
@@ -16,6 +18,8 @@ const bubbleSortButton = document.getElementById("bubbleSortBTN");
 const selectionSortButton = document.getElementById("selectionSortBTN");
 const insertionSortButton = document.getElementById("insertionSortBTN");
 const shellSortButton = document.getElementById("shellSortBTN");
+const quickSortButton = document.getElementById("quickSortBTN");
+const mergeSortButton = document.getElementById("mergeSortBTN");
 const comparisonSortButton = document.getElementById("comparisonSortBTN");
 
 //-----------------------------------------------------------------SHUFFLE FIELDS--------------------------------------------------------------
@@ -23,6 +27,8 @@ const shuffleButtonBubble = document.getElementById("shuffleBTN_bubble");
 const shuffleButtonSelection = document.getElementById("shuffleBTN_selection");
 const shuffleButtonInsertion = document.getElementById("shuffleBTN_insertion");
 const shuffleButtonShell = document.getElementById("shuffleBTN_shell");
+const shuffleButtonQuick = document.getElementById("shuffleBTN_quick");
+const shuffleButtonMerge = document.getElementById("shuffleBTN_merge");
 const shuffleButtonComparison = document.getElementById(
     "shuffleBTN_comparison"
 );
@@ -32,6 +38,8 @@ const bubbleSortSizeInput = document.getElementById("bubblesortIN");
 const selectionSortSizeInput = document.getElementById("selectionsortIN");
 const insertionSortSizeInput = document.getElementById("insertionsortIN");
 const shellSortSizeInput = document.getElementById("shellsortIN");
+const quickSortSizeInput = document.getElementById("quicksortIN");
+const mergeSortSizeInput = document.getElementById("mergesortIN");
 const comparisonSortSizeInput = document.getElementById("comparisonsortIN");
 
 //-----------------------------------------------------------------RANDOM VALUES GENERATION-----------------------------------------------------
@@ -48,6 +56,12 @@ const valuesForInsertion = new Array(Number(insertionSortSizeInput.value))
 const valuesForShell = new Array(Number(shellSortSizeInput.value))
     .fill(0)
     .map(() => randomValue(1, Number(shellSortSizeInput.value)));
+const valuesForQuick = new Array(Number(quickSortSizeInput.value))
+    .fill(0)
+    .map(() => randomValue(1, Number(quickSortSizeInput.value)));
+const valuesForMerge = new Array(Number(mergeSortSizeInput.value))
+    .fill(0)
+    .map(() => randomValue(1, Number(mergeSortSizeInput.value)));
 const valuesForComparison = new Array(Number(comparisonSortSizeInput.value))
     .fill(0)
     .map(() => randomValue(1, Number(comparisonSortSizeInput.value)));
@@ -70,6 +84,16 @@ const insertionSortAnimation = new InsertionSort(
 const shellSortAnimation = new ShellSort(
     shellSortContainer,
     valuesForInsertion,
+    waitingTime
+);
+const quickSortAnimation = new QuickSort(
+    quickSortContainer,
+    valuesForQuick,
+    waitingTime
+);
+const mergeSortAnimation = new MergeSort(
+    mergeSortContainer,
+    valuesFormerge,
     waitingTime
 );
 //-----------------------------------------------------------------COMPARISON ANIMATIONS-----------------------------------------------------------------
@@ -111,6 +135,20 @@ function setFirstSort(value) {
                 waitingTime
             );
             break;
+        case "quickSort":
+            firstSortAnimation = new QuickSort(
+                firstSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
+        case "mergeSort":
+            firstSortAnimation = new MergeSort(
+                firstSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
     }
 }
 setFirstSort("bubbleSort");
@@ -146,6 +184,20 @@ function setSecondSort(value) {
                 waitingTime
             );
             break;
+        case "quickSort":
+            secondSortAnimation = new QuickSort(
+                secondSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
+        case "mergeSort":
+            secondSortAnimation = new MergeSort(
+                secondSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
     }
 }
 setSecondSort("bubbleSort");
@@ -164,6 +216,7 @@ function changeTime(newTime) {
     selectionSortAnimation.waitingTime = newTime;
     insertionSortAnimation.waitingTime = newTime;
     shellSortAnimation.waitingTime = newTime;
+    quickSortAnimation.waitingTime = newTime;
     firstSortAnimation.waitingTime = newTime;
     secondSortAnimation.waitingTime = newTime;
 }
@@ -276,6 +329,33 @@ shellSortSizeInput.addEventListener("input", async () => {
         isShellBusy = true;
         shellSortAnimation.changeSizeAndValues(shellSortSizeInput.value);
         isShellBusy = false;
+    }
+});
+
+let isQuickBusy = false;
+quickSortButton.addEventListener("click", async () => {
+    if (!isQuickBusy) {
+        isQuickBusy = true;
+        count = quickSortSizeInput.value;
+        let quickCount = quickSortSizeInput.value;
+        let quickTime = performance.now();
+        await quickSortAnimation.sort();
+        displayTime("quick sort", quickCount, quickTime);
+        isQuickBusy = false;
+    }
+});
+shuffleButtonQuick.addEventListener("click", async () => {
+    if (!isQuickBusy) {
+        isQuickBusy = true;
+        await quickSortAnimation.shuffle();
+        isQuickBusy = false;
+    }
+});
+quickSortSizeInput.addEventListener("input", async () => {
+    if (!isQuickBusy) {
+        isQuickBusy = true;
+        quickSortAnimation.changeSizeAndValues(quickSortSizeInput.value);
+        isQuickBusy = false;
     }
 });
 

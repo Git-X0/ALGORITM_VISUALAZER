@@ -11,6 +11,7 @@
         <script src="algSelectionSort.js"></script>
         <script src="algInsertionSort.js"></script>
         <script src="algShellSort.js"></script>
+        <script src="algQuickSort.js"></script>
         <script defer src="script.js"></script>
     </head>
     <body>
@@ -124,6 +125,54 @@
             </div>
             <img src="./images/Shell_picture.png" id="shellImage" />
         </div>
+        <h3>QUICK SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="quickSort_Container"></div>
+
+            <div class="sort_inputs">
+                <button class="controls" id="quickSortBTN">Quick</button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="quicksortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_quick"
+                >
+                    Shuffle
+                </button>
+            </div>
+            <!-- <img src="./images/Bubble_picture.png" id="bubbleImage" /> -->
+        </div>
+        <h3>MERGE SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="mergeSort_Container"></div>
+
+            <div class="sort_inputs">
+                <button class="controls" id="mergeSortBTN">Quick</button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="mergesortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_merge"
+                >
+                    Shuffle
+                </button>
+            </div>
+            <!-- <img src="./images/Bubble_picture.png" id="bubbleImage" /> -->
+        </div>
         <h2>COMPARASON OF TWO ALGORITMS</h2>
         <div class="comparison_containers">
             <div class="comparison_container">
@@ -137,6 +186,7 @@
                     <option value="selectionSort">Selection Sort</option>
                     <option value="insertionSort">Insertion Sort</option>
                     <option value="shellSort">Shell Sort</option>
+                    <option value="quickSort">Quick Sort</option>
                 </select>
                 <div class="sort_container" id="firstSortContainer"></div>
             </div>
@@ -151,6 +201,7 @@
                     <option value="selectionSort">Selection Sort</option>
                     <option value="insertionSort">Insertion Sort</option>
                     <option value="shellSort">Shell Sort</option>
+                    <option value="quickSort">Quick Sort</option>
                 </select>
                 <div class="sort_container" id="secondSortContainer"></div>
             </div>
