@@ -41,16 +41,17 @@ class SortingAnimation {
     async shuffle() {
         for (let i = this.columns.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
+            this.columns[i].color = this.columns[j].color = "darkCyan";
             [this.columns[i].value, this.columns[j].value] = [
                 this.columns[j].value,
                 this.columns[i].value,
             ];
-            this.columns[i].color = this.columns[j].color = "darkCyan";
-            await this.wait((waitingTime / this.waitingTime) * 2);
-            this.columns[i].color = this.columns[j].color = "";
         }
+        await this.wait(waitingTime * 5);
+        for (let i = 0; i < this.columns.length; i++)
+            this.columns[i].color = "";
     }
-    async changeSizeAndValues(newSize) {
+    async changeSize(newSize) {
         const removeColumns = this.columns.length - newSize;
         if (removeColumns > 0) {
             for (let i = 0; i < removeColumns; i++) {

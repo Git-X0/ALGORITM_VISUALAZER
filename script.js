@@ -144,6 +144,7 @@ function randomValue(min, max) {
 
 function setFirstSort(value) {
     firstSortContainer.innerHTML = "";
+    waitingTime = document.getElementById("speedTime").value;
     switch (value) {
         case "bubbleSort":
             firstSortAnimation = new BubbleSort(
@@ -303,7 +304,7 @@ function changeTimeSpeed(newTime) {
         countingSortAnimation.waitingTime =
         firstSortAnimation.waitingTime =
         secondSortAnimation.waitingTime =
-            newTime;
+            document.getElementById("speedTime").value;
 }
 //-----------------------------------------------------------------EVENT LISTENERS---------------------------------------------------------------
 let isbubbleBusy = false;
@@ -325,9 +326,7 @@ shuffleButtonBubble.addEventListener("click", async () => {
 bubbleSortSizeInput.addEventListener("input", async () => {
     if (!isbubbleBusy) {
         isbubbleBusy = true;
-        await bubbleSortAnimation.changeSizeAndValues(
-            bubbleSortSizeInput.value
-        );
+        await bubbleSortAnimation.changeSize(bubbleSortSizeInput.value);
         isbubbleBusy = false;
     }
 });
@@ -354,9 +353,7 @@ shuffleButtonSelection.addEventListener("click", async () => {
 selectionSortSizeInput.addEventListener("input", async () => {
     if (!isSelectionBusy) {
         isSelectionBusy = true;
-        selectionSortAnimation.changeSizeAndValues(
-            selectionSortSizeInput.value
-        );
+        selectionSortAnimation.changeSize(selectionSortSizeInput.value);
         isSelectionBusy = false;
     }
 });
@@ -383,9 +380,7 @@ shuffleButtonInsertion.addEventListener("click", async () => {
 insertionSortSizeInput.addEventListener("input", async () => {
     if (!isInsertionBusy) {
         isInsertionBusy = true;
-        insertionSortAnimation.changeSizeAndValues(
-            insertionSortSizeInput.value
-        );
+        insertionSortAnimation.changeSize(insertionSortSizeInput.value);
         isInsertionBusy = false;
     }
 });
@@ -412,7 +407,7 @@ shuffleButtonShell.addEventListener("click", async () => {
 shellSortSizeInput.addEventListener("input", async () => {
     if (!isShellBusy) {
         isShellBusy = true;
-        shellSortAnimation.changeSizeAndValues(shellSortSizeInput.value);
+        shellSortAnimation.changeSize(shellSortSizeInput.value);
         isShellBusy = false;
     }
 });
@@ -439,7 +434,7 @@ shuffleButtonQuick.addEventListener("click", async () => {
 quickSortSizeInput.addEventListener("input", async () => {
     if (!isQuickBusy) {
         isQuickBusy = true;
-        quickSortAnimation.changeSizeAndValues(quickSortSizeInput.value);
+        quickSortAnimation.changeSize(quickSortSizeInput.value);
         isQuickBusy = false;
     }
 });
@@ -466,7 +461,7 @@ shuffleButtonMerge.addEventListener("click", async () => {
 mergeSortSizeInput.addEventListener("input", async () => {
     if (!isMergeBusy) {
         isMergeBusy = true;
-        mergeSortAnimation.changeSizeAndValues(mergeSortSizeInput.value);
+        mergeSortAnimation.changeSize(mergeSortSizeInput.value);
         isMergeBusy = false;
     }
 });
@@ -493,7 +488,7 @@ shuffleButtonHeap.addEventListener("click", async () => {
 heapSortSizeInput.addEventListener("input", async () => {
     if (!isHeapBusy) {
         isHeapBusy = true;
-        heapSortAnimation.changeSizeAndValues(heapSortSizeInput.value);
+        heapSortAnimation.changeSize(heapSortSizeInput.value);
         isHeapBusy = false;
     }
 });
@@ -519,9 +514,7 @@ shuffleButtonPigeonHole.addEventListener("click", async () => {
 pigeonHoleSortSizeInput.addEventListener("input", async () => {
     if (!isPigeonHoleBusy) {
         isPigeonHoleBusy = true;
-        pigeonHoleSortAnimation.changeSizeAndValues(
-            pigeonHoleSortSizeInput.value
-        );
+        pigeonHoleSortAnimation.changeSize(pigeonHoleSortSizeInput.value);
         isPigeonHoleBusy = false;
     }
 });
@@ -548,7 +541,7 @@ shuffleButtonCounting.addEventListener("click", async () => {
 countingSortSizeInput.addEventListener("input", async () => {
     if (!isCountingBusy) {
         isCountingBusy = true;
-        countingSortAnimation.changeSizeAndValues(countingSortSizeInput.value);
+        countingSortAnimation.changeSize(countingSortSizeInput.value);
         isCountingBusy = false;
     }
 });
@@ -573,8 +566,8 @@ comparisonSortSizeInput.addEventListener("input", async () => {
     if (isComparisonBusy) return;
     isComparisonBusy = true;
     await Promise.all([
-        firstSortAnimation.changeSizeAndValues(comparisonSortSizeInput.value),
-        secondSortAnimation.changeSizeAndValues(comparisonSortSizeInput.value),
+        firstSortAnimation.changeSize(comparisonSortSizeInput.value),
+        secondSortAnimation.changeSize(comparisonSortSizeInput.value),
     ]);
     isComparisonBusy = false;
 });

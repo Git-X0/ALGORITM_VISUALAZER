@@ -27,7 +27,6 @@ class HeapSort extends SortingAnimation {
             let secondChildIndex = firstChildIndex + 1;
             let childIndex = firstChildIndex;
             let childValue = arr[firstChildIndex].value;
-
             if (
                 secondChildIndex < count &&
                 childValue < arr[secondChildIndex].value
@@ -36,6 +35,7 @@ class HeapSort extends SortingAnimation {
                 childIndex = secondChildIndex;
                 childValue = arr[secondChildIndex].value;
                 await this.wait(this.waitingTime);
+                arr[index].color = unsortedColor;
             }
             if (parentValue < childValue) {
                 await this.wait(this.waitingTime * 1.5);
@@ -43,6 +43,7 @@ class HeapSort extends SortingAnimation {
                 arr[childIndex].value = parentValue;
                 index = childIndex;
                 await this.wait(this.waitingTime * 1.5);
+                arr[index].color = unsortedColor;
             } else {
                 arr[index].color = unsortedColor;
                 return;
