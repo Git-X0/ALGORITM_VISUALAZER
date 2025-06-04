@@ -284,12 +284,12 @@
             Shuffle
         </button>
         <div class="timeControl">
-            <label for="speedTime" id="timeLabel">Time [ms]</label>
+            <label for="speedTime" id="timeLabel"><em>Time [ms]</em></label>
             <input
                 type="number"
                 min="1"
-                max="200"
-                value="20"
+                max="1000"
+                value="100"
                 class="controls"
                 id="speedTime"
                 oninput="changeTimeSpeed(parseInt(this.value))"

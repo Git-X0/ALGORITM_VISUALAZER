@@ -292,17 +292,18 @@ function logTime(sort, count, time) {
 }
 
 function changeTimeSpeed(newTime) {
-    bubbleSortAnimation.waitingTime = newTime;
-    selectionSortAnimation.waitingTime = newTime;
-    insertionSortAnimation.waitingTime = newTime;
-    shellSortAnimation.waitingTime = newTime;
-    quickSortAnimation.waitingTime = newTime;
-    mergeSortAnimation.waitingTime = newTime;
-    heapSortAnimation.waitingTime = newTime;
-    pigeonHoleSortAnimation.waitingTime = newTime;
-    countingSortAnimation.waitingTime = newTime;
-    firstSortAnimation.waitingTime = newTime;
-    secondSortAnimation.waitingTime = newTime;
+    bubbleSortAnimation.waitingTime =
+        selectionSortAnimation.waitingTime =
+        insertionSortAnimation.waitingTime =
+        shellSortAnimation.waitingTime =
+        quickSortAnimation.waitingTime =
+        mergeSortAnimation.waitingTime =
+        heapSortAnimation.waitingTime =
+        pigeonHoleSortAnimation.waitingTime =
+        countingSortAnimation.waitingTime =
+        firstSortAnimation.waitingTime =
+        secondSortAnimation.waitingTime =
+            newTime;
 }
 //-----------------------------------------------------------------EVENT LISTENERS---------------------------------------------------------------
 let isbubbleBusy = false;

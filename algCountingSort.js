@@ -48,7 +48,9 @@ class CountingSort extends SortingAnimation {
             const obj = arr[i];
             const { value } = obj;
             output[--countArr[value - min]] = obj;
-            this.wait(this.waitingTime);
+            arr[i].color = "goldenrod";
+            await this.wait(this.waitingTime);
+            arr[i].color = "";
         }
         for (let i = 0; i < arr.length; i++) {
             arr[i] = output[i];

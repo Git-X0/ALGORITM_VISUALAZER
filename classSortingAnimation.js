@@ -46,7 +46,7 @@ class SortingAnimation {
                 this.columns[i].value,
             ];
             this.columns[i].color = this.columns[j].color = "darkCyan";
-            await this.wait(waitingTime ** 1.5);
+            await this.wait((waitingTime / this.waitingTime) * 2);
             this.columns[i].color = this.columns[j].color = "";
         }
     }
