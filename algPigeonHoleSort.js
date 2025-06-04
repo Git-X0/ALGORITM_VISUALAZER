@@ -5,25 +5,31 @@ class PigeonHoleSort extends SortingAnimation {
     async pigeonHolesort(arr) {
         let min = arr[0].value;
         let max = arr[0].value;
-        for (let i = 1; i < arr.length; i++) {
+        let minIndex = 0;
+        let maxIndex = 0;
+        for (let i = 1; i < arr.length - 1; i++) {
+            arr[i].color = "goldenrod";
             const temp = arr[i].value;
-            arr[i].color = "yellow";
             await this.wait(this.waitingTime);
-            if (arr[i].value < min.value) {
-                min.color = "";
-                min.value = temp;
+            if (temp < min) {
+                arr[minIndex].color = "";
+                minIndex = i;
+                min = temp;
                 arr[i].color = "red";
                 await this.wait(this.waitingTime);
-            }
-            if (arr[i].value > max.value) {
-                await this.wait(this.waitingTime);
-                max.color = "";
-                max.value = temp;
+            } else if (temp > max) {
+                arr[maxIndex].color = "";
+                maxIndex = i;
+                max = temp;
                 arr[i].color = "blue";
                 await this.wait(this.waitingTime);
+            } else {
+                arr[i].color = "";
             }
+
             await this.wait(this.waitingTime);
         }
+        arr[minIndex].color = arr[maxIndex].color = "";
         let range = max - min + 1;
         let holes = new Array(range);
         for (let i = 0; i < range; i++) {
@@ -32,7 +38,9 @@ class PigeonHoleSort extends SortingAnimation {
         for (let i = arr.length - 1; i >= 0; i--) {
             const obj = arr[i];
             obj.color = "goldenrod";
+            await this.wait(this.waitingTime * 1.5);
             holes[obj.value - min].push(obj);
+            obj.color = "";
             await this.wait(this.waitingTime);
         }
         let i = 0,
@@ -43,7 +51,7 @@ class PigeonHoleSort extends SortingAnimation {
             while (hole.length > 0) {
                 let object = hole.pop();
                 object.color = "green";
-                await this.wait(this.waitingTime);
+                await this.wait(this.waitingTime * 2);
                 object.index = j;
                 arr[j++] = object;
                 await this.wait(this.waitingTime);

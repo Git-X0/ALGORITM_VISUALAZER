@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SORTING VISUALIZER</title>
         <link rel="stylesheet" href="styles.css" />
-        <script src="algBubbleSort.js"></script>
+        <script src="classColumn.js"></script>
         <script src="classSortingAnimation.js"></script>
         <script src="algBubbleSort.js"></script>
         <script src="algSelectionSort.js"></script>
@@ -15,22 +15,10 @@
         <script src="algMergeSort.js"></script>
         <script src="algHeapSort.js"></script>
         <script src="algPigeonHoleSort.js"></script>
+        <script src="algCountingSort.js"></script>
         <script defer src="script.js"></script>
     </head>
     <body>
-        <div>
-            <p for="speedTime">Speed of sorting</p>
-            <input
-                type="number"
-                min="1"
-                max="200"
-                value="20"
-                class="controls"
-                id="speedTime"
-                oninput="changeTimeSpeed(parseInt(this.value))"
-            />
-        </div>
-
         <h1>--------------QUADRATIC SORTING-------------</h1>
         <h3>BUBBLE SORT</h3>
         <div class="sortingSection">
@@ -220,6 +208,29 @@
                 </button>
             </div>
         </div>
+        <h3>COUNTING SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="countingSort_Container"></div>
+
+            <div class="sort_inputs">
+                <button class="controls" id="countingSortBTN">Counting</button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="countingsortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_counting"
+                >
+                    Shuffle
+                </button>
+            </div>
+        </div>
         <h2>COMPARASON OF TWO ALGORITMS</h2>
         <div class="comparison_containers">
             <div class="comparison_container">
@@ -237,6 +248,7 @@
                     <option value="mergeSort">Merge Sort</option>
                     <option value="heapSort">Heap Sort</option>
                     <option value="pigeonHoleSort">Pigeon Hole Sort</option>
+                    <option value="countingSort">Counting Sort</option>
                 </select>
                 <div class="sort_container" id="firstSortContainer"></div>
             </div>
@@ -255,6 +267,7 @@
                     <option value="mergeSort">Merge Sort</option>
                     <option value="heapSort">Heap Sort</option>
                     <option value="pigeonHoleSort">Pigeon Hole Sort</option>
+                    <option value="countingSort">Counting Sort</option>
                 </select>
                 <div class="sort_container" id="secondSortContainer"></div>
             </div>
@@ -270,5 +283,17 @@
         <button class="controls" class="shuffleBTN" id="shuffleBTN_comparison">
             Shuffle
         </button>
+        <div class="timeControl">
+            <label for="speedTime" id="timeLabel">Time [ms]</label>
+            <input
+                type="number"
+                min="1"
+                max="200"
+                value="20"
+                class="controls"
+                id="speedTime"
+                oninput="changeTimeSpeed(parseInt(this.value))"
+            />
+        </div>
     </body>
 </html>

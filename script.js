@@ -15,6 +15,7 @@ const heapSortContainer = document.getElementById("heapSort_Container");
 const pigeonHoleSortContainer = document.getElementById(
     "pigeonHoleSort_Container"
 );
+const countingSortContainer = document.getElementById("countingSort_Container");
 const firstSortContainer = document.getElementById("firstSortContainer");
 const secondSortContainer = document.getElementById("secondSortContainer");
 //-----------------------------------------------------------------START BUTTONS---------------------------------------------------------------
@@ -26,6 +27,7 @@ const quickSortButton = document.getElementById("quickSortBTN");
 const mergeSortButton = document.getElementById("mergeSortBTN");
 const heapSortButton = document.getElementById("heapSortBTN");
 const pigeonHoleSortButton = document.getElementById("pigeonHoleSortBTN");
+const countingSortButton = document.getElementById("countingSortBTN");
 const comparisonSortButton = document.getElementById("comparisonSortBTN");
 
 //-----------------------------------------------------------------SHUFFLE FIELDS--------------------------------------------------------------
@@ -39,6 +41,7 @@ const shuffleButtonHeap = document.getElementById("shuffleBTN_heap");
 const shuffleButtonPigeonHole = document.getElementById(
     "shuffleBTN_pigeonHole"
 );
+const shuffleButtonCounting = document.getElementById("shuffleBTN_counting");
 const shuffleButtonComparison = document.getElementById(
     "shuffleBTN_comparison"
 );
@@ -52,6 +55,7 @@ const quickSortSizeInput = document.getElementById("quicksortIN");
 const mergeSortSizeInput = document.getElementById("mergesortIN");
 const heapSortSizeInput = document.getElementById("heapsortIN");
 const pigeonHoleSortSizeInput = document.getElementById("pigeonHolesortIN");
+const countingSortSizeInput = document.getElementById("countingsortIN");
 const comparisonSortSizeInput = document.getElementById("comparisonsortIN");
 
 //-----------------------------------------------------------------RANDOM VALUES GENERATION-----------------------------------------------------
@@ -77,9 +81,9 @@ const valuesForMerge = new Array(Number(mergeSortSizeInput.value))
 const valuesForHeap = new Array(Number(heapSortSizeInput.value))
     .fill(0)
     .map(() => randomValue(1, Number(heapSortSizeInput.value)));
-const valuesForPigeonHole = new Array(Number(comparisonSortSizeInput.value))
+const valuesForPigeonHole = new Array(Number(pigeonHoleSortSizeInput.value))
     .fill(0)
-    .map(() => randomValue(1, Number(comparisonSortSizeInput.value)));
+    .map(() => randomValue(1, Number(pigeonHoleSortSizeInput.value)));
 const valuesForComparison = new Array(Number(comparisonSortSizeInput.value))
     .fill(0)
     .map(() => randomValue(1, Number(comparisonSortSizeInput.value)));
@@ -122,6 +126,11 @@ const heapSortAnimation = new HeapSort(
 const pigeonHoleSortAnimation = new PigeonHoleSort(
     pigeonHoleSortContainer,
     valuesForPigeonHole,
+    waitingTime
+);
+const countingSortAnimation = new CountingSort(
+    countingSortContainer,
+    valuesForComparison,
     waitingTime
 );
 
@@ -186,8 +195,15 @@ function setFirstSort(value) {
             );
             break;
         case "pigeonHoleSort":
-            secondSortAnimation = new PigeonHoleSort(
-                secondSortContainer,
+            fisrtSortAnimation = new PigeonHoleSort(
+                firstSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
+        case "countingSort":
+            firstSortAnimation = new CountingSort(
+                firstSortContainer,
                 valuesForComparison,
                 waitingTime
             );
@@ -255,11 +271,18 @@ function setSecondSort(value) {
                 waitingTime
             );
             break;
+        case "countingSort":
+            secondSortAnimation = new CountingSort(
+                secondSortContainer,
+                valuesForComparison,
+                waitingTime
+            );
+            break;
     }
 }
 setSecondSort("bubbleSort");
 
-function displayTime(sort, count, time) {
+function logTime(sort, count, time) {
     console.log(
         `Time needed for ${sort} with ${count} values: ${Math.floor(
             (performance.now() - time) / 1000
@@ -277,6 +300,7 @@ function changeTimeSpeed(newTime) {
     mergeSortAnimation.waitingTime = newTime;
     heapSortAnimation.waitingTime = newTime;
     pigeonHoleSortAnimation.waitingTime = newTime;
+    countingSortAnimation.waitingTime = newTime;
     firstSortAnimation.waitingTime = newTime;
     secondSortAnimation.waitingTime = newTime;
 }
@@ -288,7 +312,7 @@ bubbleSortButton.addEventListener("click", async () => {
         let bubbleCount = bubbleSortSizeInput.value;
         let bubbleTime = performance.now();
         await bubbleSortAnimation.sort();
-        displayTime("bubble sort", bubbleCount, bubbleTime);
+        logTime("bubble sort", bubbleCount, bubbleTime);
         isbubbleBusy = false;
     }
 });
@@ -315,7 +339,7 @@ selectionSortButton.addEventListener("click", async () => {
         let selectionCount = selectionSortSizeInput.value;
         let selectionTime = performance.now();
         await selectionSortAnimation.sort();
-        displayTime("selection sort", selectionCount, selectionTime);
+        logTime("selection sort", selectionCount, selectionTime);
         isSelectionBusy = false;
     }
 });
@@ -344,7 +368,7 @@ insertionSortButton.addEventListener("click", async () => {
         let insertionCount = insertionSortSizeInput.value;
         let insertionTime = performance.now();
         await insertionSortAnimation.sort();
-        displayTime("insertion sort", insertionCount, insertionTime);
+        logTime("insertion sort", insertionCount, insertionTime);
         isInsertionBusy = false;
     }
 });
@@ -373,7 +397,7 @@ shellSortButton.addEventListener("click", async () => {
         let shellCount = shellSortSizeInput.value;
         let shellTime = performance.now();
         await shellSortAnimation.sort();
-        displayTime("shell sort", shellCount, shellTime);
+        logTime("shell sort", shellCount, shellTime);
         isShellBusy = false;
     }
 });
@@ -400,7 +424,7 @@ quickSortButton.addEventListener("click", async () => {
         let quickCount = quickSortSizeInput.value;
         let quickTime = performance.now();
         await quickSortAnimation.sort();
-        displayTime("quick sort", quickCount, quickTime);
+        logTime("quick sort", quickCount, quickTime);
         isQuickBusy = false;
     }
 });
@@ -427,7 +451,7 @@ mergeSortButton.addEventListener("click", async () => {
         let mergeCount = mergeSortSizeInput.value;
         let mergeTime = performance.now();
         await mergeSortAnimation.sort();
-        displayTime("merge sort", mergeCount, mergeTime);
+        logTime("merge sort", mergeCount, mergeTime);
         isMergeBusy = false;
     }
 });
@@ -454,7 +478,7 @@ heapSortButton.addEventListener("click", async () => {
         let heapCount = heapSortSizeInput.value;
         let heapTime = performance.now();
         await heapSortAnimation.sort();
-        displayTime("heap sort", heapCount, heapTime);
+        logTime("heap sort", heapCount, heapTime);
         isHeapBusy = false;
     }
 });
@@ -476,11 +500,11 @@ let isPigeonHoleBusy = false;
 pigeonHoleSortButton.addEventListener("click", async () => {
     if (!isPigeonHoleBusy) {
         isPigeonHoleBusy = true;
-        count = heapSortSizeInput.value;
+        count = pigeonHoleSortSizeInput.value;
         let pigeonHoleCount = pigeonHoleSortSizeInput.value;
         let pigeonHoleTime = performance.now();
         await pigeonHoleSortAnimation.sort();
-        displayTime("heap sort", pigeonHoleCount, pigeonHoleTime);
+        logTime("pigeon hole sort", pigeonHoleCount, pigeonHoleTime);
         isPigeonHoleBusy = false;
     }
 });
@@ -498,6 +522,33 @@ pigeonHoleSortSizeInput.addEventListener("input", async () => {
             pigeonHoleSortSizeInput.value
         );
         isPigeonHoleBusy = false;
+    }
+});
+
+let isCountingBusy = false;
+countingSortButton.addEventListener("click", async () => {
+    if (!isCountingBusy) {
+        isCountingBusy = true;
+        count = countingSortSizeInput.value;
+        let countingCount = countingSortSizeInput.value;
+        let countingTime = performance.now();
+        await countingSortAnimation.sort();
+        logTime("counting sort", countingCount, countingTime);
+        isCountingBusy = false;
+    }
+});
+shuffleButtonCounting.addEventListener("click", async () => {
+    if (!isCountingBusy) {
+        isCountingBusy = true;
+        await countingSortAnimation.shuffle();
+        isCountingBusy = false;
+    }
+});
+countingSortSizeInput.addEventListener("input", async () => {
+    if (!isCountingBusy) {
+        isCountingBusy = true;
+        countingSortAnimation.changeSizeAndValues(countingSortSizeInput.value);
+        isCountingBusy = false;
     }
 });
 
