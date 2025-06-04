@@ -48,7 +48,7 @@ class QuickSort extends SortingAnimation {
             await this.quick(min, pivotIndex - 1);
             await this.quick(pivotIndex + 1, max);
         } else {
-            if (max > 0) this.columns[max].color = sortedColor;
+            if (max >= 0) this.columns[max].color = sortedColor;
         }
     }
 }

@@ -5,28 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SORTING VISUALIZER</title>
         <link rel="stylesheet" href="styles.css" />
-        <script src="classColumn.js"></script>
+        <script src="algBubbleSort.js"></script>
         <script src="classSortingAnimation.js"></script>
         <script src="algBubbleSort.js"></script>
         <script src="algSelectionSort.js"></script>
         <script src="algInsertionSort.js"></script>
         <script src="algShellSort.js"></script>
         <script src="algQuickSort.js"></script>
+        <script src="algMergeSort.js"></script>
+        <script src="algHeapSort.js"></script>
+        <script src="algPigeonHoleSort.js"></script>
         <script defer src="script.js"></script>
     </head>
     <body>
-        <form id="speedForm">
-            <p for="speedSlider">Speed of sorting</p>
+        <div>
+            <p for="speedTime">Speed of sorting</p>
             <input
                 type="number"
                 min="1"
                 max="200"
                 value="20"
                 class="controls"
-                id="speedSlider"
-                oninput="changeTime(parseInt(this.value))"
+                id="speedTime"
+                oninput="changeTimeSpeed(parseInt(this.value))"
             />
-        </form>
+        </div>
+
         <h1>--------------QUADRATIC SORTING-------------</h1>
         <h3>BUBBLE SORT</h3>
         <div class="sortingSection">
@@ -50,7 +54,6 @@
                     Shuffle
                 </button>
             </div>
-            <img src="./images/Bubble_picture.png" id="bubbleImage" />
         </div>
         <h3>SELECTION SORT</h3>
         <div class="sortingSection">
@@ -76,7 +79,6 @@
                     Shuffle
                 </button>
             </div>
-            <img src="./images/Selection_picture.png" id="selectionImage" />
         </div>
         <h3>INSERTION SORT</h3>
         <div class="sortingSection">
@@ -98,7 +100,6 @@
                     Shuffle
                 </button>
             </div>
-            <img src="./images/Insertion_picture.png" id="insertionImage" />
         </div>
         <h1>---------------N-LOGARITMIC SORTING------------</h1>
         <h3>SHELL SORT</h3>
@@ -123,7 +124,6 @@
                     Shuffle
                 </button>
             </div>
-            <img src="./images/Shell_picture.png" id="shellImage" />
         </div>
         <h3>QUICK SORT</h3>
         <div class="sortingSection">
@@ -147,14 +147,13 @@
                     Shuffle
                 </button>
             </div>
-            <!-- <img src="./images/Bubble_picture.png" id="bubbleImage" /> -->
         </div>
         <h3>MERGE SORT</h3>
         <div class="sortingSection">
             <div class="sort_container" id="mergeSort_Container"></div>
 
             <div class="sort_inputs">
-                <button class="controls" id="mergeSortBTN">Quick</button>
+                <button class="controls" id="mergeSortBTN">Merge</button>
                 <input
                     type="number"
                     class="controls"
@@ -171,7 +170,55 @@
                     Shuffle
                 </button>
             </div>
-            <!-- <img src="./images/Bubble_picture.png" id="bubbleImage" /> -->
+        </div>
+        <h3>HEAP SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="heapSort_Container"></div>
+
+            <div class="sort_inputs">
+                <button class="controls" id="heapSortBTN">Heap</button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="heapsortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_heap"
+                >
+                    Shuffle
+                </button>
+            </div>
+        </div>
+        <h1>--------------LOGARITMIC SORTING-------------</h1>
+        <h3>PIGEON HOLE SORT</h3>
+        <div class="sortingSection">
+            <div class="sort_container" id="pigeonHoleSort_Container"></div>
+
+            <div class="sort_inputs">
+                <button class="controls" id="pigeonHoleSortBTN">
+                    Pigeon Hole
+                </button>
+                <input
+                    type="number"
+                    class="controls"
+                    id="pigeonHolesortIN"
+                    min="3"
+                    value="100"
+                />
+
+                <button
+                    class="controls"
+                    class="shuffleBTN"
+                    id="shuffleBTN_pigeonHole"
+                >
+                    Shuffle
+                </button>
+            </div>
         </div>
         <h2>COMPARASON OF TWO ALGORITMS</h2>
         <div class="comparison_containers">
@@ -187,6 +234,9 @@
                     <option value="insertionSort">Insertion Sort</option>
                     <option value="shellSort">Shell Sort</option>
                     <option value="quickSort">Quick Sort</option>
+                    <option value="mergeSort">Merge Sort</option>
+                    <option value="heapSort">Heap Sort</option>
+                    <option value="pigeonHoleSort">Pigeon Hole Sort</option>
                 </select>
                 <div class="sort_container" id="firstSortContainer"></div>
             </div>
@@ -202,6 +252,9 @@
                     <option value="insertionSort">Insertion Sort</option>
                     <option value="shellSort">Shell Sort</option>
                     <option value="quickSort">Quick Sort</option>
+                    <option value="mergeSort">Merge Sort</option>
+                    <option value="heapSort">Heap Sort</option>
+                    <option value="pigeonHoleSort">Pigeon Hole Sort</option>
                 </select>
                 <div class="sort_container" id="secondSortContainer"></div>
             </div>
